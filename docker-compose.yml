@@ -1,0 +1,27 @@
+version: '3'
+
+postgres:
+  restart: always
+  image: postgres:9.6
+  environment:
+    - POSTGRES_USER=
+    - POSTGRES_PASSWORD=
+    - POSTGRES_DB
+  volumes:
+    - /tmp/postgres-data:/var/lib/postgresql/data
+  ports:
+    - "5432:5432"
+
+rabbitmq: 
+  image: rabbitmq:3
+  environment:
+    - RABBITMQ_DEFAULT_VHOST=awx 
+
+memcached:
+  image: memcached:alpine
+
+awxweb:
+  image: corrjo/awx_web:latest
+
+awxtask:
+  image: corrjo/awx_task:latest
