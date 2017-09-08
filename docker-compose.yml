@@ -6,7 +6,7 @@ postgres:
   environment:
     - POSTGRES_USER=
     - POSTGRES_PASSWORD=
-    - POSTGRES_DB
+    - POSTGRES_DB=
   volumes:
     - /tmp/postgres-data:/var/lib/postgresql/data
   ports:
@@ -22,6 +22,34 @@ memcached:
 
 awxweb:
   image: corrjo/awx_web:latest
+  environment:
+    - SECRET_KEY=
+    - DATABASE_NAME=
+    - DATABASE_USER=
+    - DATABASE_PASSWORD=
+    - DATABASE_PORT=
+    - DATABASE_HOST=
+    - RABBITMQ_USER="guest"
+    - RABBITMQ_PASSWORD="guest"
+    - RABBITMQ_HOST="rabbitmq"
+    - RABBITMQ_PORT="5672"
+    - RABBITMQ_VHOST="awx"
+    - MEMCACHED_HOST="memcached"
+    - MEMCACHED_PORT=11211
 
 awxtask:
   image: corrjo/awx_task:latest
+  environment:
+    - SECRET_KEY=
+    - DATABASE_NAME=
+    - DATABASE_USER=
+    - DATABASE_PASSWORD=
+    - DATABASE_HOST=
+    - DATABASE_PORT=
+    - RABBITMQ_USER="guest"
+    - RABBITMQ_PASSWORD="guest"
+    - RABBITMQ_HOST="rabbitmq"
+    - RABBITMQ_PORT="5672"
+    - RABBITMQ_VHOST="awx"
+    - MEMCACHED_HOST="memcached"
+    - MEMCACHED_PORT=11211
